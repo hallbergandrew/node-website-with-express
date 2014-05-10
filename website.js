@@ -2,6 +2,8 @@ var express = require('express');
 var http = require('http');
 var app = express();
 
+var fortune = require('./lib/fortune.js');
+
 // set up handlebars view engine
 var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars',handlebars.engine);
@@ -15,9 +17,7 @@ app.get('/', function(req,res) {
   res.render('home');
 });
   app.get('/about', function(req,res) {
-    var randomFortune =
-        fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)];
-  res.render('about', { fortune: randomFortune} );
+    res.render('about', { fortune: fortune.getFortune() } );
 });
 // catch-all handler (middleware)
 app.use(function(req,res,next){
@@ -31,11 +31,4 @@ http.createServer(app).listen(app.get('port'), function(){
 		 app.get('port') + '; press Ctrl-C to terminate.' );
 });
 
-var fortuneCookies = [
-  'You are a dreamer, keep dreaming.',
-  'A beautiful other will soon show interest.',
-  'There is a large prize on the horizon.',
-  'More people in the world are following your actions.',
-  'This is the first day of the rest of your life.'
 
-];
