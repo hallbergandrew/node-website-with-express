@@ -23,8 +23,12 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req,res) {
   res.render('home');
 });
-  app.get('/about', function(req,res) {
-    res.render('about', { fortune: fortune.getFortune() } );
+
+app.get('/about', function(req,res) {
+  res.render('about', {
+    fortune: fortune.getFortune(),
+    pageTestScript: '/qa/tests-about.js'
+     } );
 });
 // catch-all handler (middleware)
 app.use(function(req,res,next){
