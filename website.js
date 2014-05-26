@@ -1,6 +1,9 @@
 var express = require('express');
 var http = require('http');
+var logfmt = require("logfmt");
 var app = express();
+
+app.use(logfmt.requestLogger());
 
 var fortune = require('./lib/fortune.js');
 
@@ -9,7 +12,10 @@ var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
 
-app.set( 'port', 3000 );
+var port = Number(process.env.PORT || 5000);
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
 
 app.use(function(req, res, next){
   res.locals.showTests = app.get('env') !== 'production' &&
