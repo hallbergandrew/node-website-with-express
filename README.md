@@ -1,6 +1,8 @@
 #DaBook Store
 
-##An urban bookstore website made using Node, Express, and Apache!
+##An urban bookstore website made using Node, and Express! 
+
+I'm following along with the early release of Web Development with Node and Express - O'Reilly by Ethan Brown
 
 * Templating language is Handlebars
 
@@ -10,6 +12,4 @@ BOOK ERRORS
 
 
 TESTING
-* To run a test add /?test=1
-to the end of the page url
-   ex. localhost:3000/?test=1
+* Grunt
